@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Authentication</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>User Authentication</h1>
+
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <form action="/login" method="post" class="form-container">
+            <input type="text" id="username" name="username" placeholder="Username" required><br>
+            <input type="password" id="password" name="password" placeholder="Password" required><br>
+            <button class="login-btn" type="submit">Log In</button>
+        </form>
+
+        <form action="{{ url_for('signup') }}" method="get" class="form-container">
+            <button class="signup-btn" type="submit">Sign Up</button>
+        </form>
+
+    </div>
+</body>
+</html>

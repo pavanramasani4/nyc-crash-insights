@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NYC Crash Visualizations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home-styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .navbar {
+            background-color: #0f9d58;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .navbar a.brand {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .navbar form {
+            margin: 0;
+        }
+
+        .navbar button {
+            background-color: white;
+            color: #0f9d58;
+            border: none;
+            padding: 8px 12px;
+            font-size: 14px;
+            text-transform: uppercase;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .navbar button:hover {
+            background-color: #0f9d58;
+            color: white;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-bottom: 1px solid #ddd;
+        }
+
+        header h1 {
+            font-size: 28px;
+            color: #0f9d58;
+        }
+
+        header p {
+            color: #555;
+            font-size: 16px;
+        }
+
+        .plot-container {
+            margin: 20px auto;
+            text-align: center;
+            max-width: 90%;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .plot-title {
+            font-size: 20px;
+            color: #0f9d58;
+            margin: 10px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background-color: #0f9d58;
+            color: white;
+            margin-top: 20px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="#" class="brand">NYC Crash Insight</a>
+        <form action="{{ url_for('logout') }}" method="post">
+            <button type="submit">Logout</button>
+        </form>
+    </nav>
+
+    <!-- Page Header -->
+    <header>
+        <h1>Dashboard</h1>
+        <p>Explore insights from the NYC motor vehicle collisions dataset below:</p>
+    </header>
+
+    <!-- Visualization Content -->
+    <main>
+        <!-- Plot 1 -->
+        <div class="plot-container">
+            <h2 class="plot-title">Accidents by Month</h2>
+            {{ graph1|safe }}
+        </div>
+
+        <!-- Plot 2 -->
+        <div class="plot-container">
+            <h2 class="plot-title">Accidents by Vehicle Categories</h2>
+            {{ graph2|safe }}
+        </div>
+
+        <!-- Plot 3 -->
+        <div class="plot-container">
+            <h2 class="plot-title">Accidents by Time (Hourly)</h2>
+            {{ graph3|safe }}
+        </div>
+
+        <!-- Plot 4 -->
+        <div class="plot-container">
+            <h2 class="plot-title">Accidents by Place (Borough)</h2>
+            {{ graph4|safe }}
+        </div>
+
+        <!-- Plot 5 -->
+        <div class="plot-container">
+            <h2 class="plot-title">Persons Killed Percentage by Accidents</h2>
+            {{ graph5|safe }}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 NYC Crash Insight. All rights reserved.</p>
+    </footer>
+</body>
+</html>
